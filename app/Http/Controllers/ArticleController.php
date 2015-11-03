@@ -18,7 +18,7 @@ class ArticleController extends Controller
     {
         //
        $articles = Article::all();
-       return $articles;
+       return view('article');
     }
 
     /**

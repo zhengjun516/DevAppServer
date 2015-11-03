@@ -18,8 +18,7 @@ class ArticleController extends Controller
     {
         //
        $articles = Article::all();
-        //return view('article',compact('title','content'));
-        return view('article');
+       return view('article',compact('title','content'));
     }
 
     /**

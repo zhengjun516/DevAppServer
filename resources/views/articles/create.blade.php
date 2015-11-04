@@ -2,13 +2,10 @@
 
 @section('content')
     <article class="format-image group">
-    <h2 class="post-title pad">
-       <a href="/index.php/articles/{{$article->id}}" rel="bookmark">{{$article->title}}</a>
-    </h2>
     <div class="post-inner">
         <div class="post-content pad">
             <div class="entry custome">
-               {{$article->content}}
+                                              撰写新文章
             </div>
         </div>
     </div>

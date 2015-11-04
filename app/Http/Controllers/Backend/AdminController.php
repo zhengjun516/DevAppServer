@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\Article;
 
-class ArticleController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,6 @@ class ArticleController extends Controller
     public function index()
     {
         //
-       $articles = Article::all();
-       return view('articles.index',compact('articles'));
     }
 
     /**
@@ -29,7 +26,6 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        return view('articles.create');
     }
 
     /**
@@ -52,11 +48,6 @@ class ArticleController extends Controller
     public function show($id)
     {
         //
-        $article = Article::findOrFail($id);
-       /*  if(is_null($article)){
-            abort(404);
-        } */
-        return view('articles.show',compact('article'));
     }
 
     /**

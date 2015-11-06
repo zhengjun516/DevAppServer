@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Article;
+use App\Model\Tag;
+use Carbon\Carbon;
+use App\Http\Requests\StoreArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -17,7 +20,7 @@ class ArticleController extends Controller
     public function index()
     {
         //
-       $articles = Article::all();
+       $articles = Article::latest()->published()->get();
        return view('articles.index',compact('articles'));
     }
 
@@ -29,7 +32,8 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        return view('articles.create');
+        $tags = Tag::lists('name','id');
+        return view('articles.create',compact('tags'));
     }
 
     /**
@@ -38,9 +42,17 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
         //
+        $input = $request->all();
+        $input['intro']=mb_substr($request->get('content'),0,46);
+        //$input['publish_at'] = Carbon::now();
+        $article = Article::create($input);
+        
+        $article->tags()->attach($request->input('tag_list'));
+        
+        return redirect('/');
     }
 
     /**

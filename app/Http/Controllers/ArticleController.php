@@ -80,6 +80,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         //
+        $article = Article::findOrFail($id);
+        $tags = Tag::lists('name','id');
+        return view('articles.edit',compact('article','tags'));
     }
 
     /**
@@ -89,9 +92,19 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreArticleRequest $request)
     {
         //
+        $input = $request->except('id');
+        $input['intro']=mb_substr($request->get('content'),0,46);
+         
+        $request->input('intro',mb_substr($request->get('content'),0,46));
+        
+        $article = Article::find($request->get('id'));
+        $article->update($input);
+        $article->tags()->sync($request->get('tag_list'));
+        //dd($request->all());
+        return redirect('/');
     }
 
     /**

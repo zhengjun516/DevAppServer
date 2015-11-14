@@ -1,0 +1,18 @@
+body{
+	font-family: "Source Sans Pro",sans-serif;
+	margin: 0;
+}
+
+.header{
+	height: 50px;
+}
+
+
+section{
+	float:left;
+	width:200px;
+}
+
+article{
+	 margin-left: 210px;
+}

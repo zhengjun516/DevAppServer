@@ -1,4 +1,4 @@
-@extends('app')
+@extends('articles.app')
 @section('content')
   @foreach($articles as $article)
     <article class="format-image group">
@@ -25,7 +25,7 @@
             <div class="enty custome">
               {{$article->intro}}
             </div>
-            <a class="more-link-custom" href="/index.php/articles/{{$article->id}}"><span><i>更多</i></span></a>
+            <a class="more-link-custom" href="/articles/{{$article->id}}"><span><i>更多</i></span></a>
          </div>
          
        </div>

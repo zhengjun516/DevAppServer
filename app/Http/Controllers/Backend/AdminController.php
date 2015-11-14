@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    
+    public function _construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +21,7 @@ class AdminController extends Controller
     public function index()
     {
         //
+        return view('home');
     }
 
     /**
